@@ -91,10 +91,19 @@ To the routes file add:
 Route::get('sitemap.php', '\Noprotocol\LaravelSitemap\Http\Controllers\SitemapController@index');
 ```
 
-As of this point you have a working sitemap.
+As of this point you have a working sitemap. You will find the default sitemap on /sitemap.php
 
 
-If your feeling frisky or want to change settings you can create your own controller and point the route there
+
+## Why sitemap.php and not sitemap.xml
+
+First off, crawlers don't care seeing you have to supply the filename to them. But we have seen instances where 
+the php server doesn't spin when requesting a .xml.
+
+
+## Customizing
+
+If you're feeling frisky or want to change settings you can create your own controller and point the route there.
 
 ``` php
 <?php
@@ -130,4 +139,26 @@ class SitemapController extends Controller
 }
 
 ```
+
+
+## Options
+
+When you're building the response you have a few options:
+
+No cache, create a new one every request:
+``` php
+$this->sitemap->init(1)->get(false);
+```
+
+Set an alternate interval (always, hourly, daily (default), weekly, monthly, yearly, never):
+``` php
+setInterval([interval])
+```
+
+Set the time to cache the result:
+``` php
+cache($minutes)
+```
+
+Everything else is set in the config.
 

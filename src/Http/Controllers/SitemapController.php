@@ -25,7 +25,7 @@ class SitemapController extends Controller
      */
     public function index()
     {
-        return response($this->sitemap->init(1)->get(false), '200')
+        return response($this->sitemap->init(1)->get(), '200')
             ->header('Content-Type', 'text/xml');
     }
 }

@@ -37,16 +37,6 @@ class Sitemap {
 		return $this;
 	}
 
-	/**
-	 *
-	 */
-	public function setDate($date) 
-	{
-		$this->date = $date;
-		array_push($this->cacheKey, $date);
-		return $this;
-	}
-
 	// always, hourly, daily, weekly, monthly, yearly, never
 	public function interval($interval)
 	{
@@ -84,7 +74,6 @@ class Sitemap {
 	{
 		$this->app = $app;
 		$this->xml = '';
-		$this->date = date('Y-m-d');
 		$this->interval = 'daily';
 		$this->priority = '0.5';
 		$this->cacheKey = [];
