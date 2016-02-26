@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Noprotocol\LaravelSitemap;
 
 use Illuminate\Foundation\Application as App;
 use Config;

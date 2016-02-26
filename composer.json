@@ -10,5 +10,10 @@
             "email": "matthijs@noprotocol.nl"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Noprotocol\\LaravelSitemap\\": "src/"
+        },
+    }
     "minimum-stability": "dev"
 }

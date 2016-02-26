@@ -1,7 +1,23 @@
+# Laravel sitemap
+
+A dynamic sitemap creator for Laravel. Runs from a simple config and can be used to create multiple sitemaps. 
+Comes in handy when running multiple domains and/or multiple models.
+
+
+## How does it work
+
+``` bash
+composer install noprotocol/laravel-sitemap
+php artisan vendor:publish --provider="Noprotocol\LaravelSitemap\SitemapServiceProvider"
+
+```
+
+Open the config/sitemap.php file and edit it. An example has been supplied
+
+``` php
 <?php
 
 return [
-	
 	/*********************** EXAMPLE ************************
 	'sites' => [
 		1 => [
@@ -67,3 +83,51 @@ return [
 	]
 
 ];
+```
+
+To the routes file add:
+
+``` php
+Route::get('sitemap.php', '\Noprotocol\LaravelSitemap\Http\Controllers\SitemapController@index');
+```
+
+As of this point you have a working sitemap.
+
+
+If your feeling frisky or want to change settings you can create your own controller and point the route there
+
+``` php
+<?php
+
+namespace App\Http\Controllers;
+
+use Noprotocol\LaravelSitemap\Sitemap;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+
+class SitemapController extends Controller
+{
+
+    private $sitemap;
+
+    public function __construct(Sitemap $sitemap) 
+    {
+        $this->sitemap = $sitemap;
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return response($this->sitemap->init(1)->get(false), '200')
+            ->header('Content-Type', 'text/xml');
+    }
+}
+
+```
+

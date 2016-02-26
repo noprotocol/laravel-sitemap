@@ -1,16 +1,15 @@
 <?php
 
-namespace Thorazine\Cms;
+namespace Noprotocol\LaravelSitemap;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
-use Thorazine\Cms\Commands\DatabaseBuilder;
 use Config;
 use View;
 use App;
 
-class CmsServiceProvider extends ServiceProvider
+class SitemapServiceProvider extends ServiceProvider
 {
 
     /**
@@ -34,8 +33,6 @@ class CmsServiceProvider extends ServiceProvider
         include __DIR__.'/Http/routes.php'; // include the routes
         $this->registerClasses(); // register all the classes
         $this->registerCommands(); // add commands
-
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
     }
 
     /**
@@ -45,8 +42,8 @@ class CmsServiceProvider extends ServiceProvider
      */
     private function configPublishes() {
         $this->publishes([
-            __DIR__.'/config/cms.php' => config_path('cms.php'),
-        ], 'cms');
+            __DIR__.'/config/sitemap.php' => config_path('sitemap.php'),
+        ], 'sitemap');
     }
 
    
@@ -58,17 +55,7 @@ class CmsServiceProvider extends ServiceProvider
     private function registerClasses() {
         $classes = [
             // include the models
-            'Cms',
-            //'Helpers\\CmsSetting', // A simple settings class
-            //'Helpers\\CmsNaming', //
-            //'Helpers\\CmsModel', //
-            'Helpers\\Routing', //
-            'Helpers\\CmsAuth', //
-            'Helpers\\Model', //
-
-            // include the pre made models
-            'Modules\\Page\\Models\\Page',
-
+            'Sitemap',
         ];
     }
 
@@ -78,7 +65,7 @@ class CmsServiceProvider extends ServiceProvider
      * @return void
      */
     private function configMerges() {
-        $this->mergeConfigFrom( __DIR__.'/config/cms.php', 'cms');
+        //$this->mergeConfigFrom( __DIR__.'/config/sitemap.php', 'sitemap');
     }
 
     /**
