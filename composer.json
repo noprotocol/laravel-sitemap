@@ -1,0 +1,14 @@
+{
+    "name": "noprotocol/laravel-sitemap",
+    "description": "A simple sitemap builder for multiple sitemaps based on Eloquent",
+    "require": {
+
+    },
+    "authors": [
+        {
+            "name": "Matthijs Openneer",
+            "email": "matthijs@noprotocol.nl"
+        }
+    ],
+    "minimum-stability": "dev"
+}
